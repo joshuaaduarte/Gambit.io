@@ -1,4 +1,12 @@
 int chessboard[8][8];
+int copyChessboard[8][8] = {{1,1,1,1,1,1,1,1},
+                            {1,1,1,1,1,1,1,1},
+                            {0,0,0,0,0,0,0,0},
+                            {0,0,0,0,0,0,0,0},
+                            {0,0,0,0,0,0,0,0},
+                            {0,0,0,0,0,0,0,0},
+                            {1,1,1,1,1,1,1,1},
+                            {1,1,1,1,1,1,1,1}};
 
 
 void setup() {
@@ -29,6 +37,14 @@ void loop() {
     Serial.println();
 
   delay(1000); 
+    for(int row = 0; row < 8; row++){
+    for(int col = 0; col < 8; col++){
+      Serial.print(copyChessboard[row][col]);
+    }
+    Serial.println();
+    }
+    Serial.println();
+    delay(5000);
   }
   
   
