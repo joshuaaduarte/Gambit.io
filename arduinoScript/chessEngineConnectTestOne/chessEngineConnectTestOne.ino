@@ -223,6 +223,7 @@ void getserialchar() {
       }
       else{
         Serial.print("Good to go!");
+        break;
       }
     }
 
