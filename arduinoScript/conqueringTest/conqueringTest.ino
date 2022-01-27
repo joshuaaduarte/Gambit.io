@@ -1,12 +1,12 @@
 int chessboard[8][8];
 int copyBoard[8][8] = {{1,1,1,1,1,1,1,1},
-                            {1,1,1,1,1,1,1,1},
-                            {0,0,0,0,0,0,0,0},
-                            {0,0,0,0,0,0,0,0},
-                            {0,0,0,0,0,0,0,0},
-                            {0,0,0,0,0,0,0,0},
-                            {1,1,1,1,1,1,1,1},
-                            {1,1,1,1,1,1,1,1}};
+                      {1,1,1,1,0,1,1,1},
+                      {0,0,0,0,0,0,0,0},
+                      {0,0,0,0,1,0,0,0},
+                      {0,0,0,1,0,0,0,0},
+                      {0,0,0,0,0,0,0,0},
+                      {1,1,1,0,1,1,1,1},
+                      {1,1,1,1,1,1,1,1}};
 
 
 void setup() {
@@ -56,6 +56,7 @@ serialBoard();
 /* User interface routines */
 
 void loop() {
+  
   int rowDetection[8]= {10, 11, 12, A0, A1, A2, A3, A4}; 
   bool properSetup = false; 
   int flagSetup = 0;
@@ -111,7 +112,8 @@ void loop() {
   
   int flag1 = 0;
   int flag2 = 0;
-  //bool stringComplete = false;
+  char c[4];
+  bool stringComplete = false;
 
   while (flag1 == 0 && flag2 == 0){
     int rowDetection[8]= {10, 11, 12, A0, A1, A2, A3, A4}; 
@@ -142,12 +144,20 @@ void loop() {
         
         }
         if (flag1 ==1 && flag2 ==1){
-          //stringComplete = true;
+          stringComplete = true;
         }
       }
     }
+
+  
     delay(2000);
   }
+    c[0] = 'A' + (32+start[0]);
+    c[1] = '1' + start[1];
+    c[2] = 'A' + (32+start[2]);
+    c[3] = '1' + start[3];
+    c[4] = 0;
+    Serial.print(c);
 
 }
   
