@@ -70,7 +70,7 @@ void setup() {
 
   
 // this portion sets up the initial board that is seen by the user 
-  Serial.println("*** MicroMaxChess ***");
+  Serial.println("*** Gambit Chess ***");
   lastH[0] = 0;
   serialBoard();
 // Scans the reed switch matrix to see if it is set up properly 
