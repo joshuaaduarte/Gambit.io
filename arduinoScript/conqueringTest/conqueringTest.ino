@@ -10,6 +10,10 @@ int copyBoard[8][8] = {{1,1,1,1,1,1,1,1},
 
 
 void setup() {
+  
+// sets up the script by assigning specific pins with specific modes
+// Pins 2-9 are digital outputs and serve to supply voltage to the board
+// Pins 10-12 ; A0-A4 are digital inputs and take in the readings of the board and output it to the serial monitor
 
   Serial.begin(9600);
   for(int i = 2; i < 13; i++)
@@ -56,13 +60,14 @@ serialBoard();
 /* User interface routines */
 
 void loop() {
-  
+
+  //Sets the second set of pins (the input pins) into an array of integers to be called
   int rowDetection[8]= {10, 11, 12, A0, A1, A2, A3, A4}; 
   bool properSetup = false; 
   int flagSetup = 0;
   int flagSetup2 = 0;
   int start[4]; 
-
+  // Sets a loop that cannot be broken until 
   while ((flagSetup == 0) || (flagSetup2 == 0)){ 
       flagSetup = 1;
       for (int i = 7; i >= 0; i--){
@@ -117,6 +122,7 @@ void loop() {
 
   while (flag1 == 0 && flag2 == 0){
     int rowDetection[8]= {10, 11, 12, A0, A1, A2, A3, A4}; 
+    //Loop that scans the board and assigns values to a 8x8 array chessboard
     for (int i = 7; i >= 0; i--){
      for(int j = 2; j < 10; j++){
        digitalWrite(j, HIGH);
@@ -125,16 +131,37 @@ void loop() {
        //Serial.print(digitalRead(rowDetection[i]));
        digitalWrite(j, LOW);
      }
-       // Serial.println();     
+       // Serial.println();
+       // 
+      for (int m = 0; m <8; m++){
+        for (int n = 0; n < 8; n++){
+          if (copyBoard[m][n] == 1 && chessboard[m][n] == 0){
+           start[0] = n;
+           start[1] = 7-m;  
+            flag1 = 1;
+          }
+          if (copyBoard[i][j] == 0 && chessboard[i][j] == 1){
+           start[2] = j;
+           start[3] = 7-i;
+           flag2 = 1;
+          
+          }
+          if (flag1 ==1 && flag2 ==1){
+            stringComplete = true;
+          }
+        }
+      }
+
+        
     }
     //Serial.println();
     
     
-    for (int i = 0; i <8; i++){
-      for (int j = 0; j < 8; j++){
-        if (copyBoard[i][j] == 1 && chessboard[i][j] == 0){
-         start[0] = j;
-         start[1] = 7-i;  
+/*    for (int m = 0; m <8; m++){
+      for (int n = 0; n < 8; n++){
+        if (copyBoard[m][n] == 1 && chessboard[m][n] == 0){
+         start[0] = n;
+         start[1] = 7-m;  
           flag1 = 1;
         }
         if (copyBoard[i][j] == 0 && chessboard[i][j] == 1){
@@ -148,7 +175,7 @@ void loop() {
         }
       }
     }
-
+*/
   
     delay(2000);
   }
