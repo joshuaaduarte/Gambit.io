@@ -11,6 +11,15 @@
   text-shadow: none; /* Prevent inheritance from `body` */
 }
 
+.site-header a {
+  color: #8e8e8e;
+  transition: color .15s ease-in-out;
+}
+
+.site-header a:hover {
+  color: #fff;
+  text-decoration: none;
+}
 
 /*
  * Base structure
