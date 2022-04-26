@@ -12,12 +12,12 @@
 }
 
 .site-header a {
-  color: #8e8e8e;
+  color: #fff;
   transition: color .15s ease-in-out;
 }
 
 .site-header a:hover {
-  color: #fff;
+  color: #8e8e8e;
   text-decoration: none;
 }
 
@@ -28,6 +28,7 @@
 body {
   text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
   box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+  background-image: url(images/JAD00195.JPG);
 }
 
 .cover-container {
