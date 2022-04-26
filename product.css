@@ -35,6 +35,12 @@
   transform: rotate(30deg);
 }
 
+.back1{
+  background-image: url(images/JAD00194.JPG);
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
 .product-device::before {
   position: absolute;
   top: 10%;
