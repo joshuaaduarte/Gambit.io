@@ -41,6 +41,18 @@
   background-size: auto;
 }
 
+.smallDisplay{
+  background-image: url(images/reedSense.PNG);
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+.gantry{
+  background-image: url(images/gantry.PNG);
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
 .product-device::before {
   position: absolute;
   top: 10%;
