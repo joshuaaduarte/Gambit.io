@@ -46,6 +46,25 @@ body {
   height: 32rem;
 }
 
+.chassis{
+  background-image: url(images/chassis.JPG);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.sensing{
+  background-image: url(images/reedSense.PNG);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.gantry{
+  background-image: url(images/gantry.PNG);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+
 
 /* MARKETING CONTENT
 -------------------------------------------------- */
