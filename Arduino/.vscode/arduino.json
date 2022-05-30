@@ -1,7 +1,6 @@
 {
-    "port": "COM3",
-    "configuration": "cpu=atmega2560",
-    "board": "arduino:avr:mega",
+    "port": "COM4",
+    "board": "arduino:avr:uno",
     "programmer": "arduino:avrisp",
-    "sketch": "twoMotorDriverInput\\twoMotorDriverInput.ino"
+    "sketch": "limitSwitch\\limitSwitch.ino"
 }
