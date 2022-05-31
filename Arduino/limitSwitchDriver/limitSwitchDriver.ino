@@ -1,5 +1,5 @@
 #include <AccelStepper.h>
-
+#include <ezButton.h>
 
 // Define pin connections
 const int dirPin = 2;
@@ -7,8 +7,11 @@ const int stepPin = 3;
 const int dirPin2 = 4;
 const int stepPin2 = 5;
 
+//define limit switches
 
-#include <AccelStepper.h>
+ezButton limitswitch(7);
+ezButton limitswitch2(8);
+
 
 // Define two steppers and the pins they will use
 AccelStepper stepper1(AccelStepper::DRIVER, stepPin, dirPin);
@@ -27,6 +30,8 @@ void setup() {
   stepper2.setAcceleration(2000);
   int pos1 = 200;
   int pos2 = 200;
+  limitswitch.setDebounceTime(50); // set debounce time to 50 milliseconds
+  limitswitch2.setDebounceTime(50);
 }
  
 void loop() {
@@ -38,6 +43,8 @@ void loop() {
   
   int flag1 = 1;
   int flag2 = 1;
+  int flag3 = 0;
+  int flag4 = 0;
   int pos1 = 200;
   int pos2 = 200;  
   
@@ -130,7 +137,39 @@ void loop() {
   while (Serial.available() > 0) {
     Serial.read();
   }
+    while (flag3 == 0){
+          stepper1.move(-200);
 
+          stepper2.move(-200);
+
+          stepper1.run();
+          stepper2.run();
+          limitswitch.loop();
+          if(limitswitch.isPressed()){
+            Serial.println("Limit 1 Pressed");
+            delay(1000);
+            flag3 = 1;
+          }
+      }
+    while (flag4 == 0){
+            stepper1.move(-200);
+
+            stepper2.move(200);
+
+            stepper1.run();
+            stepper2.run();
+            limitswitch2.loop();
+            if(limitswitch2.isPressed()){
+                Serial.println("Limit 2 Pressed");
+                    delay(1000);
+                    flag4 = 1;
+
+            }
+
+      }
+  
+    stepper1.setCurrentPosition(0);
+    stepper2.setCurrentPosition(0);
 }
 
 String directionInput(){
