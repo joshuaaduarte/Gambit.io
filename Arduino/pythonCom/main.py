@@ -1,7 +1,7 @@
 import serial
 import time
 
-arduinoData = serial.Serial('COM4',9600)
+arduinoData = serial.Serial('COM3',9600)
 arduinoData.timeout = 1
 
 # def selectDirection():
