@@ -141,10 +141,10 @@ void loop() {
     Serial.read();
   }
   
-  limitSwitch();
-    while (Serial.available() > 0) {
-    Serial.read();
-  }
+  //limitSwitch();
+    //while (Serial.available() > 0) {
+    //Serial.read();
+  //}
   stepper1.setCurrentPosition(0);
   stepper2.setCurrentPosition(0);
 }

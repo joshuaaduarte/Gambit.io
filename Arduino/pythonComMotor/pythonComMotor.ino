@@ -51,7 +51,7 @@ void loop() {
   int pos1 = 200;
   int pos2 = 200;  
   
-  if (stepDirection == "down"){
+  if (stepDirection == "up"){
     int temp1 = -pos1 * rotations;
     int temp2 = -pos2 * rotations;
     pos1 =  temp1;
@@ -74,7 +74,7 @@ void loop() {
     stepper2.setCurrentPosition(0);
   }
 
-  if (stepDirection == "up"){
+  if (stepDirection == "down"){
     int temp3 = pos1 * rotations;
     int temp4 = pos2 * rotations;
     pos1 =  temp3;
@@ -96,7 +96,7 @@ void loop() {
     stepper2.setCurrentPosition(0);
   }
 
-   if (stepDirection == "left"){
+   if (stepDirection == "right"){
     int temp1 = -pos1 * rotations;
     int temp2 = pos1 * rotations;
     pos1 =  temp1;
@@ -117,7 +117,7 @@ void loop() {
     stepper2.setCurrentPosition(0);
    }
 
-   if (stepDirection == "right"){
+   if (stepDirection == "left"){
     pos1 = pos1 * rotations;
     pos2 = -1* pos2 * rotations;    
     while (flag1 == 1 && flag2 == 1){
@@ -137,42 +137,42 @@ void loop() {
     stepper1.setCurrentPosition(0);
     stepper2.setCurrentPosition(0);
    }
-
-     if (stepDirection == "middle"){
-    int temp3 = pos1 * 6;
-    int temp4 = pos2 * 6;
-    pos1 =  temp3;
-    pos2 =  temp4;
-    Serial.println(pos1);
-    Serial.println(pos2);
-    while (flag1 == 1 && flag2 == 1){
-      stepper1.moveTo(pos1);
-      stepper2.moveTo(pos2);
-
-      stepper1.run();
-      stepper2.run();
-      if (stepper1.distanceToGo() == 0 && stepper2.distanceToGo() == 0){
-        flag1 = 0;
-        flag2 = 0;
-      }  
-    }
-    stepper1.setCurrentPosition(0);
-    stepper2.setCurrentPosition(0);
-    flag1 = 1;
-    flag2 = 1;
-      while (flag1 == 1 && flag2 == 1){
-      stepper1.moveTo(pos1);
-      stepper2.moveTo(pos2);
-
-      stepper1.run();
-      stepper2.run();
-      if (stepper1.distanceToGo() == 0 && stepper2.distanceToGo() == 0){
-        flag1 = 0;
-        flag2 = 0;
-      }  
-    }
-    
-  }
+//
+//     if (stepDirection == "middle"){
+//    int temp3 = pos1 * 6;
+//    int temp4 = pos2 * 6;
+//    pos1 =  temp3;
+//    pos2 =  temp4;
+//    Serial.println(pos1);
+//    Serial.println(pos2);
+//    while (flag1 == 1 && flag2 == 1){
+//      stepper1.moveTo(pos1);
+//      stepper2.moveTo(pos2);
+//
+//      stepper1.run();
+//      stepper2.run();
+//      if (stepper1.distanceToGo() == 0 && stepper2.distanceToGo() == 0){
+//        flag1 = 0;
+//        flag2 = 0;
+//      }  
+//    }
+//    stepper1.setCurrentPosition(0);
+//    stepper2.setCurrentPosition(0);
+//    flag1 = 1;
+//    flag2 = 1;
+//      while (flag1 == 1 && flag2 == 1){
+//      stepper1.moveTo(pos1);
+//      stepper2.moveTo(pos2);
+//
+//      stepper1.run();
+//      stepper2.run();
+//      if (stepper1.distanceToGo() == 0 && stepper2.distanceToGo() == 0){
+//        flag1 = 0;
+//        flag2 = 0;
+//      }  
+//    }
+//    
+//  }
   
   while (Serial.available() > 0) {
     Serial.read();
@@ -207,9 +207,9 @@ void limitSwitch(){
       int flag4 = 0; 
       limitswitch.loop();
       while (digitalRead(7) == HIGH){
-          stepper1.move(200);
+          stepper1.move(-200);
 
-          stepper2.move(200);
+          stepper2.move(-200);
 
           stepper1.run();
           stepper2.run();
