@@ -25,16 +25,16 @@ int coordinateTwo;
  
 void setup() {
   Serial.begin(9600);      // Initialize Serial Port
-  stepper1.setMaxSpeed(2000);
+  stepper1.setMaxSpeed(3000);
   stepper1.setAcceleration(2000);
-  stepper2.setMaxSpeed(2000);
+  stepper2.setMaxSpeed(3000);
   stepper2.setAcceleration(2000);
   int pos1 = 200;
   int pos2 = 200;
   pinMode(7, INPUT_PULLUP);
   pinMode(8, INPUT_PULLUP);
-  limitswitch.setDebounceTime(50); // set debounce time to 50 milliseconds
-  limitswitch2.setDebounceTime(50);
+  limitswitch.setDebounceTime(5); // set debounce time to 50 milliseconds
+  limitswitch2.setDebounceTime(5);
 }
  
 void loop() {
@@ -46,7 +46,9 @@ void loop() {
   int flag1 = 1;
   int flag2 = 1;
   int pos1 = 200;
-  int pos2 = 200;  
+  int pos2 = 200;
+  int pos3 = 200;
+  int pos4 = 200;  
   
 
    int rotationOne = coordinateOne * 1;
@@ -54,7 +56,7 @@ void loop() {
 
    if (coordinateOne >= 0){
     pos1 = pos1 * rotationOne;
-    pos2 = -1* pos2 * rotationOne;    
+    pos2 = -pos2 * rotationOne;    
     while (flag1 == 1 && flag2 == 1){
       
       stepper1.moveTo(pos1);
@@ -71,19 +73,20 @@ void loop() {
     }
     stepper1.setCurrentPosition(0);
     stepper2.setCurrentPosition(0);
+    flag1 = 1;
+    flag2 = 1;
    }
 
+  
    
   if (coordinateTwo >= 0){
-    int temp3 = pos1 * rotationTwo;
-    int temp4 = pos2 * rotationTwo;
-    pos1 =  temp3;
-    pos2 =  temp4;
-    Serial.println(pos1);
-    Serial.println(pos2);
+    int temp3 = pos3 * rotationTwo;
+    int temp4 = pos4 * rotationTwo;
+    Serial.println(temp3);
+    Serial.println(temp4);
     while (flag1 == 1 && flag2 == 1){
-      stepper1.moveTo(pos1);
-      stepper2.moveTo(pos2);
+      stepper1.moveTo(temp3);
+      stepper2.moveTo(temp4);
 
       stepper1.run();
       stepper2.run();
@@ -94,6 +97,8 @@ void loop() {
     }
     stepper1.setCurrentPosition(0);
     stepper2.setCurrentPosition(0);
+    flag1 = 1;
+    flag2 = 1;
   }
   
   while (Serial.available() > 0) {
@@ -112,7 +117,7 @@ void loop() {
 }
 
 int coordinateOneInput(){
-  Serial.println("Coordinate One (Units Left)?");      //Prompt User for input
+  Serial.println("Coordinate One (Units right)?");      //Prompt User for input
   while (Serial.available() ==0 );           //Wait for user input
   coordinateOne = Serial.parseInt();
   return coordinateOne;
@@ -120,7 +125,7 @@ int coordinateOneInput(){
 }
 
 int coordinateTwoInput(){
-  Serial.println("Coordinate Two (Units Down)?");      //Prompt User for input
+  Serial.println("Coordinate Two (Units up)?");      //Prompt User for input
   while (Serial.available() ==0 );           //Wait for user input
   coordinateTwo = Serial.parseInt();
   return coordinateTwo;
